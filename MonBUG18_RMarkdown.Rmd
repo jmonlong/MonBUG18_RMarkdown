@@ -1,0 +1,245 @@
+---
+title: "Introduction to R Markdown"
+subtitle: "MonBUG Meeting"
+author: "Jean Monlong"
+date: May 9, 2018
+output: 
+  beamer_presentation:
+    keep_tex: true
+    slide_level: 2
+  ioslides_presentation: default
+  md_document: default
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, fig.width=8, tidy=TRUE, tidy.opts=list(width.cutoff=20))
+```
+
+
+# Introduction
+
+## What is R Markdown ?
+
+### Markdown
+
+- Markdown is a simple language to write documents.
+- Markdown can be converted to many formats: html, pdf, docx, epub, ...
+
+### R Markdown
+
+- R Markdown is a way to embed R code within a Markdown document.
+- R code can be run and its output part of the final document.
+
+![Under the hood (from rmarkdown.rstudio.com)](https://d33wubrfki0l68.cloudfront.net/61d189fd9cdf955058415d3e1b28dd60e1bd7c9b/b739c/lesson-images/rmarkdownflow.png)
+
+##
+
+### Why use R Markdown ?
+
+1. Easier to document an analysis.
+1. Encourage better analysis.
+1. Speed up the "analysis-to-report" time.
+
+### How ?
+
+1. Run the `render` function from the *rmarkdown* package.
+1. Click on `Knit` in Rstudio.
+
+
+# Header
+
+## YAML Header
+
+Defines the metadata of the document and parameters for the compilation.
+
+~~~yaml
+---
+title: "Introduction to R Markdown"
+subtitle: "MonBUG Meeting"
+author: "Jean Monlong"
+date: May 9, 2018
+output: ioslides_presentation
+---
+~~~
+
+
+# Syntax
+
+## Text syntax
+
+```markdown
+# Header 1
+
+## Header 2
+
+### Header 3
+
+Some text with a **word in bold**, 
+another *in italic* and a 
+[link](https://rmarkdown.rstudio.com)
+```
+
+Some text with a **word in bold**, 
+another *in italic* and a 
+[link](https://rmarkdown.rstudio.com)
+
+
+## Lists 
+
+```markdown
+- Bullet item 1
+    1. Ordered item 1
+    1. Ordered item 2
+- Bullet item 2
+```
+
+- Bullet item 1
+    1. Ordered item 1
+    1. Ordered item 2
+- Bullet item 2
+
+*Note: 4 spaces to define sub-lists.*
+
+# R code
+
+## R Chunk 
+
+~~~md
+```{r histtest}`r ''`
+x = rnorm(1000)
+hist(x)
+```
+~~~
+
+```{r histtest, fig.height=3}
+x = rnorm(1000)
+hist(x)
+```
+
+
+
+## Chunk options 
+
+- `eval=FALSE`: don't run the code.
+- `echo=FALSE`: don't show the output.
+- `message=FALSE`: don't show the output messages.
+- `warning=FALSE`: don't show the output warnings.
+- `fig.width=8`: set the width of figures.
+- `cache=TRUE`: cache the results of a chunk.
+
+## Trick for defaults 
+
+~~~markdown
+```{r include=FALSE}`r ''`
+knitr::opts_chunk$set(echo=FALSE, message=FALSE,
+                      warning=FALSE, fig.width=10)
+```
+~~~
+
+## Cache 
+
+~~~markdown
+```{r cache=TRUE}`r ''`
+res = reallyLongComputation(x)
+hist(res)
+```
+~~~
+
+
+
+
+
+# Tables 
+
+## `kable` function
+
+```{r, echo=FALSE}
+df = data.frame(time=c('Before MonBUG', 'After MonBUG'), Rmarkdown.knowledge=c(3801,11543), Rmarkdown.usage=c(0.112309474298234, 0.2234982356))
+```
+
+```{r}
+df
+library(knitr)
+kable(df)
+```
+
+## Kable and its arguments 
+
+```{r}
+kable(df, digits=2, format.args = list(big.mark = ","), col.names=c('Time', 'RMarkdown knowledge', 'Rmarkdown usage'))
+```
+
+
+## Resize for slides 
+
+~~~md
+```{r, include=FALSE}`r ''`
+knitr::knit_hooks$set(resize = function(before,
+                                        options, envir) {
+    if (before) {
+      return('\\resizebox{\\textwidth}{!}{')
+    } else {
+      return('}')
+    }
+})
+
+# Wide table
+
+```{r, resize=TRUE}}`r ''`
+knitr::kable(matrix(rnorm(10),10,10), format='latex')
+```
+~~~
+
+
+
+# Output formats 
+
+## Markdown 
+
+For GitHub/Bitbucket pages or wikis.
+
+~~~yaml
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+~~~
+
+## HTML 
+
+~~~yaml
+---
+output:
+  html_document:
+    toc: true
+---
+~~~
+
+Customizable themes and cool stuff.
+
+## PDF and slides 
+
+~~~yaml
+---
+output:
+  beamer_presentation:
+    dev: png
+---
+~~~
+
+*Trick:* use PNG image types to minimize output size.
+
+
+
+
+## Sharing documents
+
+- Single files: HTML/PDF
+- On GitHub as Markdown files: copy output `.md` file and `_files` folder (with images).
+- On GitHub as HTML files: name the file `index.html` and switch on GitHub Pages.
+- On [RPubs](https://rpubs.com/) ("Publish" button in RStudio).
+
+# Going further 
+
+
