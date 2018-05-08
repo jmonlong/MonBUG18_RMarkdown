@@ -127,6 +127,7 @@ Chunk options
 -   `include=FALSE`: don't output anything (but code is run).
 -   `fig.width=8`: set the width of figures.
 -   `cache=TRUE`: cache the results of a chunk.
+-   `tidy=TRUE`: tidy the code.
 
 Specifying default chunk options
 --------------------------------
@@ -195,10 +196,8 @@ Kable and its arguments
 -----------------------
 
 ``` r
-kable(df, digits = 2, 
-    format.args = list(big.mark = ","), 
-    col.names = c("Time", 
-        "RMarkdown knowledge", 
+kable(df, digits = 2, format.args = list(big.mark = ","), 
+    col.names = c("Time", "RMarkdown knowledge", 
         "Rmarkdown usage"))
 ```
 
@@ -212,14 +211,14 @@ Resize for slides (Beamer output)
 
 ```` yaml
 ```{r, include=FALSE}
-knitr::knit_hooks$set(resize = function(before,
-                                        options, envir) {
+knitr::knit_hooks$set(resize = function(before, options, envir) {
     if (before) {
       return('\\resizebox{\\textwidth}{!}{')
     } else {
       return('}')
     }
 })
+```
 
 # Wide table
 
@@ -293,12 +292,38 @@ output:
 ---
 ```
 
+PDF and slides
+--------------
+
+Remove navigation bar and add page numbers
+
+``` yaml
+---
+output:
+  beamer_presentation:
+    includes:
+      in_header: header.tex
+---
+```
+
+And in `header.tex`:
+
+``` latex
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[page number]
+```
+
 Sharing documents
 -----------------
 
--   Single files: HTML/PDF
--   On GitHub as Markdown files: copy output `.md` file and `_files` folder (with images).
--   On GitHub as HTML files: name the file `index.html` and switch on GitHub Pages.
+-   Single files
+    -   PDF
+    -   HTML have images embedded.
+-   On GitHub as Markdown files
+    -   `.md` file and `_files` folder (with images).
+-   On GitHub as HTML files
+    -   Name the file `index.html` and switch on GitHub Pages.
+    -   Use [rawgit.com](https://rawgit.com/).
 -   On [RPubs](https://rpubs.com/) ("Publish" button in RStudio).
 
 Going further

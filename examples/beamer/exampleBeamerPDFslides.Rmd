@@ -1,0 +1,69 @@
+---
+title: "A title for the slides"
+subtitle: "A subtitle"
+author: Name
+date: May 9, 2018
+output: 
+  beamer_presentation:
+    includes:
+      in_header: header.tex
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
+knitr::knit_hooks$set(resize = function(before,
+                                        options, envir) {
+    if (before) {
+      return('\\resizebox{\\textwidth}{!}{')
+    } else {
+      return('}')
+    }
+})
+```
+
+```{r libs}
+library(dplyr)
+library(knitr)
+library(broom)
+library(ggplot2)
+```
+
+
+## Data
+
+Here is what the data looks like:
+
+```{r sim}
+N = 40
+df = tibble(group=rep(1:2,N), var=rnorm(2*N,0,10)) %>% mutate(data=rnorm(n(), group)+var)
+df %>% head %>% kable
+```
+
+
+## t-test
+
+```{r ttest, resize=TRUE}
+tt.o = t.test(subset(df, group==1)$data, subset(df, group==2)$data)
+tt.o %>% tidy %>% kable(format='latex')
+```
+
+Not significant, the p-value is `r tt.o$p.value`.
+
+
+## Controlling for something
+
+A linear model that controls for the `var` column.
+
+```{r lm}
+library(broom)
+lm(group ~ data + var, data=df) %>% tidy %>% kable
+```
+
+Now it's significant, yeay !
+
+## Third part
+
+```{r graph}
+library(ggplot2)
+ggplot(df, aes(x=data, y=var, colour=factor(group))) + geom_point()
+```
