@@ -342,5 +342,6 @@ Going further
 
 -   Bibliography from `.bib` files.
 -   Websites with the [`blogdown` package](https://bookdown.org/yihui/blogdown/).
+-   Dashboards, e.g. [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/index.html)
 -   [Interactive notebooks](https://rmarkdown.rstudio.com/r_notebooks.html).
 -   Interactive graphs in HTML documents ([example](http://timelyportfolio.github.io/rCharts_nyt_home_price/)).
