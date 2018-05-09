@@ -1,7 +1,7 @@
 ---
 title: "Introduction to R Markdown"
 subtitle: "MonBUG Meeting"
-author: "Jean Monlong"
+author: "Jean Monlong - Bourque Lab & C3G"
 date: May 9, 2018
 output: 
   ioslides_presentation: default
