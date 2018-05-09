@@ -1,4 +1,5 @@
 ---
+title: "A title for the analysis"
 output: 
   html_document:
     theme: lumen
@@ -12,8 +13,6 @@ output:
 knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, tidy=TRUE)
 ```
 
-
-# A title for the analysis
 
 I find this type of document perfect for tutorials. 
 I used it to show the commands and output for a [R workshop](https://github.com/jmonlong/HGSS_Rworkshops/blob/master/Advanced-Tidyverse-Bioconductor-2018/HGSS-Rworkshop2018-advanced-liveScript.md).

@@ -1,7 +1,7 @@
 ---
 title: "A title for the slides"
 subtitle: "A subtitle"
-author: Name
+author: "Your Name"
 date: May 9, 2018
 output: 
   beamer_presentation:
@@ -28,6 +28,18 @@ library(broom)
 library(ggplot2)
 ```
 
+## Summary
+
+- This a an example.
+- It shows several slides.
+- Some with tables.
+- One with a figure.
+
+## Methods
+
+1. Simulate some data.
+1. Test for differences using t-test.
+1. Idem using a linear regression.
 
 ## Data
 
