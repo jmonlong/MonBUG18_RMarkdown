@@ -6,25 +6,40 @@ What is R Markdown ?
 
 ### Markdown
 
--   Markdown is a simple language to write documents.
--   Markdown can be converted to many formats: html, pdf, docx, epub, ...
+-   Markdown is a **simple** language to write documents.
+-   Markdown **can be converted to many formats**: html, pdf, docx, epub, ...
 
 ### R Markdown
 
--   R Markdown is a way to embed R code within a Markdown document.
+-   R Markdown is a way to **embed R code** within a Markdown document.
 -   R code can be run and its output part of the final document.
 
 ![Under the hood (from rmarkdown.rstudio.com)](https://d33wubrfki0l68.cloudfront.net/61d189fd9cdf955058415d3e1b28dd60e1bd7c9b/b739c/lesson-images/rmarkdownflow.png)
 
-### Why use R Markdown ?
+Why use R Markdown ?
+--------------------
 
-1.  Easier to document an analysis. Everything in one place.
-2.  Encourage better analysis.
-3.  Speed up the "analysis-to-report" time.
+1.  Easier to document an analysis.
+2.  Everything in one place: code, figures, comments.
+3.  Encourage better analysis, transparency and reproducibility
+4.  Speed up the "analysis-to-report" time.
 
-### How ?
+### Practical cases
+
+1.  Analysis report for you, your PI, or your lab-book/wiki. <sup>*Markdown*</sup>
+2.  Report to share with collaborators. <sup>*PDF*</sup> <sup>*HTML*</sup>
+3.  Code associated with a paper. <sup>*Markdown*</sup>
+4.  Tutorials/workshops. <sup>*Markdown*</sup>
+5.  Websites/blogs. <sup>*Markdown*</sup>
+
+How ?
+-----
 
 1.  Write a Markdown document with your favorite editor/RStudio.
+    -   Header defines metadata and render parameters.
+    -   Text using Markdown syntax.
+    -   R code chunks that will be run.
+
 2.  Render the document:
     -   In R, run the `render` function from the *rmarkdown* package.
     -   In Rstudio, click on `Knit`
@@ -47,8 +62,8 @@ output: ioslides_presentation
 ---
 ```
 
-Syntax
-======
+Markdown syntax
+===============
 
 Text syntax
 -----------
@@ -59,12 +74,14 @@ Text syntax
 ## Header 2
 
 ### Header 3
-
-Some text with a **word in bold**, another *in italic* and 
-a [link](https://rmarkdown.rstudio.com)
 ```
 
  
+
+``` yaml
+Some text with a **word in bold**, another *in italic* and 
+a [link](https://rmarkdown.rstudio.com)
+```
 
 Some text with a **word in bold**, another *in italic* and a [link](https://rmarkdown.rstudio.com)
 
@@ -76,12 +93,14 @@ Lists
     1. Ordered item 1
     1. Ordered item 2
 - Bullet item 2
+- Bullet item 3
 ```
 
 -   Bullet item 1
     1.  Ordered item 1
     2.  Ordered item 2
 -   Bullet item 2
+-   Bullet item 3
 
  
 
@@ -222,7 +241,7 @@ knitr::knit_hooks$set(resize = function(before, options, envir) {
 
 # Wide table
 
-```{r, resize=TRUE}}
+```{r, resize=TRUE}
 knitr::kable(df, format='latex')
 ```
 ````
