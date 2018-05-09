@@ -211,8 +211,8 @@ kable(df)
 | Before MonBUG |                 3801|        0.1123095|
 | After MonBUG  |                11543|        0.2234982|
 
-Kable and its arguments
------------------------
+`kable` and its arguments
+-------------------------
 
 ``` r
 kable(df, digits = 2, format.args = list(big.mark = ","), 
@@ -225,8 +225,8 @@ kable(df, digits = 2, format.args = list(big.mark = ","),
 | Before MonBUG |                3,801|             0.11|
 | After MonBUG  |               11,543|             0.22|
 
-Resize for slides (Beamer output)
----------------------------------
+Resize wide tables for Beamer slides
+------------------------------------
 
 ```` yaml
 ```{r, include=FALSE}
@@ -239,7 +239,7 @@ knitr::knit_hooks$set(resize = function(before, options, envir) {
 })
 ```
 
-# Wide table
+## Wide table
 
 ```{r, resize=TRUE}
 knitr::kable(df, format='latex')
@@ -291,8 +291,8 @@ Customizable themes and cool features:
 -   Fold code chunks (`code_folding`).
 -   Tabs.
 
-PDF and slides
---------------
+Beamer presentation (PDF)
+-------------------------
 
 ``` yaml
 ---
@@ -314,8 +314,8 @@ output:
     dev: png
 ```
 
-PDF and slides
---------------
+Beamer presentation (PDF)
+-------------------------
 
 Remove navigation bar and add page numbers
 

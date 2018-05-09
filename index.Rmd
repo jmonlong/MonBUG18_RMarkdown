@@ -211,14 +211,14 @@ library(knitr)
 kable(df)
 ```
 
-## Kable and its arguments 
+## `kable` and its arguments 
 
 ```{r}
 kable(df, digits=2, format.args = list(big.mark = ","), col.names=c('Time', 'RMarkdown knowledge', 'Rmarkdown usage'))
 ```
 
 
-## Resize for slides (Beamer output)
+## Resize wide tables for Beamer slides
 
 ~~~yaml
 ```{r, include=FALSE}`r ''`
@@ -231,7 +231,7 @@ knitr::knit_hooks$set(resize = function(before, options, envir) {
 })
 ```
 
-# Wide table
+## Wide table
 
 ```{r, resize=TRUE}`r ''`
 knitr::kable(df, format='latex')
@@ -282,7 +282,7 @@ Customizable themes and cool features:
 - Fold code chunks (`code_folding`).
 - Tabs.
 
-## PDF and slides 
+## Beamer presentation (PDF)
 
 ~~~yaml
 ---
@@ -304,7 +304,7 @@ output:
     dev: png
 ~~~
 
-## PDF and slides 
+## Beamer presentation (PDF)
 
 Remove navigation bar and add page numbers
 
