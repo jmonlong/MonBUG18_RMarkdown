@@ -275,6 +275,7 @@ HTML
 
 ``` yaml
 ---
+title: "Your title"
 output:
   html_document:
     toc: true
@@ -295,6 +296,10 @@ PDF and slides
 
 ``` yaml
 ---
+title: "Introduction to R Markdown"
+subtitle: "MonBUG Meeting"
+author: "Jean Monlong"
+date: May 9, 2018
 output: beamer_presentation
 ---
 ```
@@ -304,11 +309,9 @@ output: beamer_presentation
 Trick: use PNG image types to reduce PDF size (sometimes).
 
 ``` yaml
----
 output:
   beamer_presentation:
     dev: png
----
 ```
 
 PDF and slides

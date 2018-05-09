@@ -26,14 +26,14 @@ df = tibble(group = rep(1:2, N), var = rnorm(2 * N, 0, 10)) %>% mutate(data = rn
 df %>% head %>% kable
 ```
 
-|  group|         var|         data|
-|------:|-----------:|------------:|
-|      1|  -13.854191|  -14.6870145|
-|      2|   -6.939499|   -5.6428160|
-|      1|   -9.339964|   -7.4029521|
-|      2|   -6.637002|   -5.5026223|
-|      1|  -10.736660|   -9.4814768|
-|      2|   -2.962756|   -0.3646996|
+|  group|         var|        data|
+|------:|-----------:|-----------:|
+|      1|    2.209994|    3.182857|
+|      2|    8.046382|   10.229175|
+|      1|    3.352837|    4.332096|
+|      2|  -17.199034|  -15.385406|
+|      1|    2.723654|    4.218162|
+|      2|  -12.281116|  -10.885143|
 
 Second part
 -----------
@@ -51,15 +51,15 @@ tt.o
     ##  Welch Two Sample t-test
     ## 
     ## data:  subset(df, group == 1)$data and subset(df, group == 2)$data
-    ## t = -1.3331, df = 75.871, p-value = 0.1865
+    ## t = -1.9097, df = 77.973, p-value = 0.05986
     ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  -8.035069  1.591765
+    ##  -8.8909740  0.1850986
     ## sample estimates:
     ## mean of x mean of y 
-    ## 0.1878545 3.4095063
+    ## -1.762175  2.590763
 
-Not significant, the p-value is 0.1864959.
+Not significant, the p-value is 0.0598558.
 
 ### Controlling for something
 
@@ -70,18 +70,18 @@ library(broom)
 lm(group ~ data + var, data = df) %>% tidy %>% kable
 ```
 
-| term        |    estimate|  std.error|  statistic|    p.value|
-|:------------|-----------:|----------:|----------:|----------:|
-| (Intercept) |   1.2700570|  0.0880197|  14.429240|  0.0000000|
-| data        |   0.1578799|  0.0485942|   3.248947|  0.0017180|
-| var         |  -0.1527974|  0.0489313|  -3.122694|  0.0025247|
+| term        |    estimate|  std.error|  statistic|   p.value|
+|:------------|-----------:|----------:|----------:|---------:|
+| (Intercept) |   1.2027495|  0.0792686|  15.173093|  0.00e+00|
+| data        |   0.2075282|  0.0421613|   4.922241|  4.80e-06|
+| var         |  -0.1989420|  0.0422468|  -4.709040|  1.08e-05|
 
 Now it's significant, yeay !
 
 Third part
 ----------
 
-Maybe it's time for one graph.
+Maybe it's time for a graph.
 
 ``` r
 library(ggplot2)
